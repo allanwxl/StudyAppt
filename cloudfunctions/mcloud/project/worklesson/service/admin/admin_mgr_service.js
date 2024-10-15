@@ -1,7 +1,7 @@
 /**
  * Notes: 管理员管理
  * Ver : CCMiniCloud Framework 2.0.1 ALL RIGHTS RESERVED BY cclinux0730 (wechat)
- * Date: 2021-07-11 07:48:00 
+ * Date: 2021-07-11 07:48:00
  */
 
 const BaseProjectAdminService = require('./base_project_admin_service.js');
@@ -23,6 +23,8 @@ class AdminMgrService extends BaseProjectAdminService {
 			ADMIN_NAME: name,
 			ADMIN_PASSWORD: md5Lib.md5(password)
 		}
+		console.log('登录用户', name, md5Lib.md5(password))
+
 		let fields = 'ADMIN_ID,ADMIN_NAME,ADMIN_DESC,ADMIN_TYPE,ADMIN_LOGIN_TIME,ADMIN_LOGIN_CNT';
 		let admin = await AdminModel.getOne(where, fields);
 		if (!admin)
@@ -58,7 +60,9 @@ class AdminMgrService extends BaseProjectAdminService {
 	}
 
 	async clearLog() {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		await LogModel.clear()
+		return true
+		// this.AppError('[课时]该功能暂不开放');
 	}
 
 	/** 取得日志分页列表 */
@@ -67,7 +71,7 @@ class AdminMgrService extends BaseProjectAdminService {
 		sortType, // 搜索菜单
 		sortVal, // 搜索菜单
 		orderBy, // 排序
-		whereEx, //附加查询条件 
+		whereEx, //附加查询条件
 		page,
 		size,
 		oldTotal = 0
@@ -154,7 +158,12 @@ class AdminMgrService extends BaseProjectAdminService {
 
 	/** 删除管理员 */
 	async delMgr(id, myAdminId) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		// this.AppError('[课时]该功能暂不开放');
+		let where = {
+			_id: id
+		}
+		await AdminModel.del(where);
+		return true
 	}
 
 	/** 添加新的管理员 */
@@ -164,15 +173,36 @@ class AdminMgrService extends BaseProjectAdminService {
 		phone,
 		password
 	}) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
-
+		// this.AppError('[课时]该功能暂不开放');
+		let where = {
+			ADMIN_NAME: name
+		}
+		let admin = await AdminModel.getOne(where, '*');
+		if (admin) this.AppError('管理员已存在');
+		// 添加新的管理员
+		let data = {
+			ADMIN_NAME: name,
+			ADMIN_DESC: desc,
+			ADMIN_PHONE: phone,
+			ADMIN_PASSWORD: md5Lib.md5(password)
+		}
+		await AdminModel.add(data);
+		return true;
 	}
 
 	/** 修改状态 */
 	async statusMgr(id, status, myAdminId) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
-	} 
- 
+		// this.AppError('[课时]该功能暂不开放');
+		let where = {
+			_id: id
+		}
+		let data = {
+			ADMIN_STATUS: status
+		}
+		await AdminModel.edit(where, data);
+		return true;
+	}
+
 
 	/** 获取管理员信息 */
 	async getMgrDetail(id) {
@@ -194,14 +224,36 @@ class AdminMgrService extends BaseProjectAdminService {
 		phone,
 		password
 	}) {
-
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		// this.AppError('[课时]该功能暂不开放');
+		let where = {
+			_id: id
+		}
+		let data = {
+			ADMIN_NAME: name,
+			ADMIN_DESC: desc,
+			ADMIN_PHONE: phone
+		}
+		if (password) data.ADMIN_PASSWORD = md5Lib.md5(password)
+		await AdminModel.edit(where, data);
+		return true;
 	}
 
 	/** 修改自身密码 */
 	async pwdtMgr(adminId, oldPassword, password) {
-
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		let admin = await AdminModel.getOne(adminId, '*');
+		// 打印一下
+		console.log(admin, admin.ADMIN_PASSWORD);
+		if (!admin || admin.ADMIN_PASSWORD !== md5Lib.md5(oldPassword)) this.AppError('旧密码错误');
+		let data = {
+			ADMIN_PASSWORD: password
+		}
+		// let where = {
+		// 	ADMIN_ID: adminId,
+		// 	_pid: this.getProjectId()
+		// }
+		await AdminModel.edit(admin, data);
+		return true;
+		// this.AppError('[课时]该功能暂不开放');
 	}
 }
 

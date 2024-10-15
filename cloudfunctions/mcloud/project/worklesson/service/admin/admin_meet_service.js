@@ -32,7 +32,7 @@ class AdminMeetService extends BaseProjectAdminService {
 
 	/** 推荐首页SETUP */
 	async vouchMeetSetup(id, vouch) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 
@@ -50,18 +50,18 @@ class AdminMeetService extends BaseProjectAdminService {
 
 	// 按项目统计人数
 	async statJoinCntByMeet(meetId) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 
 	/** 管理员按钮核销 */
 	async checkinJoin(joinId, flag) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	/** 管理员扫码核销 */
 	async scanJoin(meetId, code) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	/**
@@ -69,12 +69,12 @@ class AdminMeetService extends BaseProjectAdminService {
 	 * @param {*} daySet daysSet的节点
 	 */
 	checkHasJoinCnt(times) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	// 判断含有预约的日期
 	getCanModifyDaysSet(daysSet) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	// 更新forms信息
@@ -82,7 +82,7 @@ class AdminMeetService extends BaseProjectAdminService {
 		id,
 		hasImageForms
 	}) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 
@@ -100,7 +100,7 @@ class AdminMeetService extends BaseProjectAdminService {
 		joinForms,
 	}) {
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 
@@ -109,7 +109,7 @@ class AdminMeetService extends BaseProjectAdminService {
 		daysSet,
 	}) {
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 
 	}
 
@@ -120,7 +120,7 @@ class AdminMeetService extends BaseProjectAdminService {
 			_id: id
 		}
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	/**获取信息 */
@@ -142,7 +142,7 @@ class AdminMeetService extends BaseProjectAdminService {
 
 	/** 更新日期设置 */
 	async _editDays(meetId, nowDay, daysSetData) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	/**更新数据 */
@@ -159,7 +159,7 @@ class AdminMeetService extends BaseProjectAdminService {
 		forms,
 		joinForms
 	}) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 
 	}
 
@@ -271,7 +271,7 @@ class AdminMeetService extends BaseProjectAdminService {
 
 	/** 删除 */
 	async delJoin(joinId) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 
 	}
 
@@ -279,22 +279,22 @@ class AdminMeetService extends BaseProjectAdminService {
 	 * 特殊约定 99=>正常取消 
 	 */
 	async statusJoin(joinId, status, reason = '') {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	/**修改项目状态 */
 	async statusMeet(id, status) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	/**置顶排序设定 */
 	async sortMeet(id, sort) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	/**首页设定 */
 	async vouchMeet(id, vouch) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	//##################模板
@@ -304,7 +304,7 @@ class AdminMeetService extends BaseProjectAdminService {
 		times,
 	}, meetId = 'admin') {
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 
 	}
 
@@ -315,13 +315,13 @@ class AdminMeetService extends BaseProjectAdminService {
 		isLimit
 	}, meetId = 'admin') {
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 
 	/**删除数据 */
 	async delMeetTemp(id, meetId = 'admin') {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 
 	}
 
@@ -347,7 +347,7 @@ class AdminMeetService extends BaseProjectAdminService {
 
 	/**删除报名数据 */
 	async deleteJoinDataExcel() {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 	}
 
 	/**导出报名数据 */
@@ -357,7 +357,7 @@ class AdminMeetService extends BaseProjectAdminService {
 		endDay,
 		status
 	}) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]该功能暂不开放');
 
 	}
 

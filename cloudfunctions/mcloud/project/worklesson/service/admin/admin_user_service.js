@@ -1,7 +1,7 @@
 /**
  * Notes: 用户管理
  * Ver : CCMiniCloud Framework 2.0.1 ALL RIGHTS RESERVED BY cclinux0730 (wechat)
- * Date: 2022-01-22  07:48:00 
+ * Date: 2022-01-22  07:48:00
  */
 
 const BaseProjectAdminService = require('./base_project_admin_service.js');
@@ -38,7 +38,7 @@ class AdminUserService extends BaseProjectAdminService {
 		sortType, // 搜索菜单
 		sortVal, // 搜索菜单
 		orderBy, // 排序
-		whereEx, //附加查询条件 
+		whereEx, //附加查询条件
 		page,
 		size,
 		oldTotal = 0
@@ -94,19 +94,60 @@ class AdminUserService extends BaseProjectAdminService {
 
 
 	async statusUser(id, status, reason) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		// this.AppError('[课时]该功能暂不开放');
+		let where = {
+			_id: id
+		}
+		let data = {
+			USER_STATUS: status
+		}
+		if (status === 0) {
+			data.USER_STATUS_REASON = reason;
+		}
+		return await UserModel.insertOrUpdate(where, data);
 	}
 
 
 	/**添加用户 */
 	async insertUser(admin, { name, mobile, lessonCnt }) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		// this.AppError('[课时]该功能暂不开放');
+		let where = {
+			USER_MOBILE: mobile
+		}
+		let user = await UserModel.getOne(where);
+		if (user) {
+			// 更新用户
+			let data = {
+				USER_NAME: name,
+				USER_LESSON_TOTAL_CNT: lessonCnt,
+				USER_TYPE: 0,
+				USER_STATUS: UserModel.STATUS.COMM
+			}
+			return await UserModel.insertOrUpdate(where, data);
+		} else {
+			// 添加新的用户
+			let data = {
+				USER_MINI_OPENID: mobile,
+				USER_NAME: name,
+				USER_MOBILE: mobile,
+				USER_LESSON_TOTAL_CNT: lessonCnt,
+				USER_LESSON_USED_CNT: 0,
+				USER_STATUS: UserModel.STATUS.COMM,
+				USER_TYPE: 0,
+				USER_ADD_TIME: this._timestamp,
+				USER_ADD_IP: false
+			}
+			return await UserModel.insert(data);
+		}
 	}
 
 	/**删除用户 */
 	async delUser(id) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
-
+		// this.AppError('[课时]该功能暂不开放');
+		let where = {
+			_id: id
+		}
+		return await UserModel.del(where);
 	}
 
 	// #####################导出用户数据
@@ -118,14 +159,14 @@ class AdminUserService extends BaseProjectAdminService {
 
 	/**删除用户数据 */
 	async deleteUserDataExcel() {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		// this.AppError('[课时]该功能暂不开放');
+		return await exportUtil.deleteDataExcel(EXPORT_USER_DATA_KEY);
 	}
 
 	/**导出用户数据 */
 	async exportUserDataExcel(condition, fields) {
-
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
-
+		// this.AppError('[课时]该功能暂不开放');
+		return await exportUtil.exportDataExcel(EXPORT_USER_DATA_KEY, '用户数据', 0, condition, fields);
 	}
 
 }
